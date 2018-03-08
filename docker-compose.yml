@@ -1,0 +1,22 @@
+version: '3'
+services:
+  alibot:
+    container_name: alibot
+    image: alibot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - USERNAME=youremail@gmail.com
+      - PASSWORD=yourpassword
+      - CC_MONTH=XX
+      - CC_YEAR=XX
+    volumes:
+      - ./:/app
+    links:
+      - selenium-server
+    command: python /app/main.py
+
+  selenium-server:
+    container_name: selenium-server
+    image: selenium/standalone-chrome
